@@ -23,15 +23,15 @@ Este trabalho consiste em criar um ecossistema.
 * AVALIAÇÕES DO PROJETO:
 ------------------------
 
-- [ ] (+5)  Criar classe sistema e todos os seus atributos e métodos 
-- [ ] (+10) Criar a classe ator e todos os seus atributos e métodos.
-- [ ] (+10) Criar a classe ambiente e todos os seus atrubutos e métodos 
-- [ ] (+5)  Mostrar a execução símples com 3 atores com algum(s) sistema(s) locomotor(es) e digestivo(s) (pelo menos um de cada).
-- [ ] (+5)  Identação do código .
+- [X] (+5)  Criar classe sistema e todos os seus atributos e métodos 
+- [X] (+10) Criar a classe ator e todos os seus atributos e métodos.
+- [X] (+10) Criar a classe ambiente e todos os seus atrubutos e métodos 
+- [X] (+5)  Mostrar a execução símples com 3 atores com algum(s) sistema(s) locomotor(es) e digestivo(s) (pelo menos um de cada).
+- [X] (+5)  Identação do código .
 - [ ] (+5)  Criar mais um sistema qualquer, a sua escolha, que aja sobre ambiente ou sobre outro ator. 
-- [ ] (+5)  Executar uma instância onde contém 6 atores que deve interagir com o ambiente, e deve parar de executar quando tiver um único ator ou que a energia de todos acabem. (Ou seja, não precisa fazer um ator devorar o outro).
+- [X] (+5)  Executar uma instância onde contém 6 atores que deve interagir com o ambiente, e deve parar de executar quando tiver um único ator ou que a energia de todos acabem. (Ou seja, não precisa fazer um ator devorar o outro).
 
 - [ ] (+5) Não utilizar JAVA
 - [ ] (+5) Para cada sistema diferente (tirando os três anteriores) e mostrar ele funcionando.
-- [ ] (+5) Interface Gráfica.
+- [X] (+5) Interface Gráfica.
 - [ ] (+5) Inteligência, não atores (ou em alguns).
