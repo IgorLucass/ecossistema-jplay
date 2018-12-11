@@ -5,7 +5,6 @@ package classes;
 public class Sistema {
     
     protected String nome;
-    protected String id;
 
 
     public String getNome() {
@@ -14,11 +13,5 @@ public class Sistema {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }  
     
 }

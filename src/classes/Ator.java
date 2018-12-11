@@ -3,7 +3,6 @@ package classes;
 import java.util.Random;
 import jplay.Scene;
 import jplay.Sprite;
-import jplay.TileInfo;
 import jplay.URL;
 
 public class Ator extends Sprite {
@@ -16,43 +15,17 @@ public class Ator extends Sprite {
     SistemaDigestivo sd = new SistemaDigestivo();
     Random rand = new Random();
         
-    public Ator(int id, char nome, int x, int y, String fileName, int numFrames) {
-        super(URL.sprite(fileName), numFrames);
-        this.energia = Energia.INICIAL.getValor();
-        this.x = x;
-        this.y = y;
-        this.setTotalDuration(2000);
-        this.id = Gerador.getTileAtorIdRand();
-        this.nome = Gerador.getLetraRand();
-   }
-    
    public Ator(Ambiente amb) {
         super(URL.sprite("ator0.png"), 1);
         this.nome = Gerador.getLetraRand();     
-        this.insereEmRandomSolo(amb);
         this.id = Gerador.getTileAtorIdRand();
+        this.insereEmRandomSolo(amb);
         amb.atorList.add(this);
         this.energia = Energia.INICIAL.getValor();
     }
 
-   public Ator(char nome) {
-        super(URL.sprite("ator0.png"), 1);
-        this.id = Gerador.getTileAtorIdRand();
-        this.nome = nome;
-    }
-
-    public Ator(String fileName) {
-        super(URL.sprite(fileName));
-        this.energia = Energia.INICIAL.getValor();
-        this.x = -1;
-        this.y = -1;
-        this.setTotalDuration(2000);
-        this.id = Gerador.getTileAtorIdRand();
-        this.nome = Gerador.getLetraRand();
-    }
-
     private void insereEmRandomSolo(Ambiente amb) {
-        int posX=0, posY=0;
+        int posX, posY;
         
         posX = rand.nextInt(Ambiente.TAB_SIZE_MAX);
         posY = rand.nextInt(Ambiente.TAB_SIZE_MAX);
@@ -79,14 +52,13 @@ public class Ator extends Sprite {
                 System.out.println("Colisao, jogador " + this.nome + " come " + batalhado.nome);
                 System.out.println("jogador " + amb.tab[x][(int) y] + " removido");
                 amb.removeAtor(amb.getAtorInPos((int) x, (int) y), cena);
-            } else if (amb.tab[x][(int) y] == ID.MACA.getCharID()) {
-                System.out.println(this.nome + " comeu maça! +50 energia");
-                this.addEnergia(50);
+            } 
+            else if(amb.tab[x][(int) y]!=ID.SOLO.getCharID()){
+                System.out.println(this.nome + " comeu! +50 energia");
+                this.sd.comer(this);
                 System.out.println("Ator " + this.nome + " energia: " + this.energia + "%");
             }
-            if (amb.tab[x][(int) y] == ID.CARNE.getCharID()) {
-                sd.comer(this);
-            }
+           
             amb.tab[(int) this.x][(int) this.y] = ID.SOLO.getCharID();
             this.x = x;
             amb.tab[(int) this.x][(int) this.y] = this.nome;
@@ -99,14 +71,13 @@ public class Ator extends Sprite {
     public void setPosXY(int x, int y, Ambiente amb, Scene cena) {
         if (Auxiliar.isAtor(x, y, amb)) {
             Ator batalhado = atorDesafiado(amb.tab[x][y], amb);
-
             System.out.println("Colisao, jogador " + this.nome + " come " + batalhado.nome);
             System.out.println("jogador " + amb.tab[x][(int) y] + " removido");
             amb.removeAtor(amb.getAtorInPos((int) x, y), cena);
 
-        } else if (amb.tab[x][y] == ID.MACA.getCharID()) {
+        } else if (amb.tab[x][y] != ID.SOLO.getCharID()) {
             System.out.println(this.nome + " comeu maça! +50 energia");
-            this.addEnergia(50);
+            this.sd.comer(this);
             System.out.println("Ator " + this.nome + " energia: " + this.energia + "%");
         }
         amb.tab[(int) this.x][(int) this.y] = ID.SOLO.getCharID();
@@ -123,9 +94,9 @@ public class Ator extends Sprite {
             System.out.println("jogador " + amb.tab[(int) x][y] + " removido");
             amb.removeAtor(amb.getAtorInPos((int) x, y), cena);
 
-        } else if (amb.tab[(int) x][y] == ID.MACA.getCharID()) {
+        } else if (amb.tab[(int) x][y] != ID.SOLO.getCharID()) {
             System.out.println(this.nome + " comeu maça! +50 energia");
-            this.addEnergia(50);
+            this.sd.comer(this);
             System.out.println("Ator " + this.nome + " energia: " + this.energia + "%");
         }
         amb.tab[(int) this.x][(int) this.y] = ID.SOLO.getCharID();

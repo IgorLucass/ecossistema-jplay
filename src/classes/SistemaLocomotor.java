@@ -35,7 +35,7 @@ public class SistemaLocomotor {
                 break;
         }
 
-        a.retiraEnergia(1);
+        a.retiraEnergia(Energia.GASTO_LOCOMOVER.getValor());
     }
 
 }

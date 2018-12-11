@@ -3,8 +3,6 @@ package classes;
 import java.util.ArrayList;
 import java.util.Random;
 import jplay.Scene;
-import jplay.URL;
-import jplay.Window;
 
 public class Ambiente {
 
@@ -53,11 +51,6 @@ public class Ambiente {
             }
         }    
         
-//        // Inserir os Tiles no ambiente
-//        for(int x=0;x<16;x++) 
-//            for (int y = 0; y < 16; y++) 
-//                this.insereTile(cena, x, y);
-    
     }
     
     private void gerarAtores(int numAtores) {
@@ -105,7 +98,7 @@ public class Ambiente {
     }
     
     public void insereTile(Scene cena, int posX, int posY) {
-        int tileID = ID.SOLO.getIntID();
+        int tileID;
         char tileChar = this.tab[posX][posY];
        
         if(tileChar == ID.SOLO.getCharID()) tileID = ID.SOLO.getIntID();
@@ -115,29 +108,29 @@ public class Ambiente {
         else if(tileChar == ID.COGUMELO.getCharID()) tileID = ID.COGUMELO.getIntID();
         else if(tileChar == ID.FASTFOOD.getCharID()) tileID = ID.FASTFOOD.getIntID();
         else if(tileChar == ID.TREE.getCharID()) tileID = ID.TREE.getIntID();
-        else {
-            try{
-                 tileID=getAtorInPos(posX,posY).getId();
-            } catch(NullPointerException e) {
-                //this.exibirNoConsole();
-                System.out.println("Char q bugou: "+ tileChar + "na pos: " + posX + " " + posY );
-            }
-       }
+        else tileID=getAtorInPos(posX,posY).getId();    
+       
         cena.changeTile(posX, posY, tileID);
     }
     
     public void insereTile(Scene cena, int posX, int posY, int tileID) {
         cena.changeTile(posX, posY, tileID);
     }
-
-    public boolean isAtorDead(int i) {
-        if(this.atorList.get(i).getEnergia() <= 0) {
-            return true;    
-        }
-        return false;
+    
+    private boolean isEmpty(int x, int y) {
+        return this.tab[x][y] == ID.SOLO.getCharID();
     }
+    
+    public boolean isAtorDead(int i) {
+        return this.atorList.get(i).getEnergia() <= 0;
+    }
+    
+    public void FinalizarJogo() {
+        System.out.println("Ator " + atorList.get(0).nome + " ganhou!");
+       
+   }
 
-   
+    // Getters e Setters:
     public void setChar(char charEntrada, byte x, byte y) {
         this.tab[x][y] = charEntrada;
     }
@@ -150,7 +143,6 @@ public class Ambiente {
     public void setIdRodada(byte idRodada) {
         this.idRodada = idRodada;
     }
-    private boolean isEmpty(int x, int y) {
-        return this.tab[x][y] == ID.SOLO.getCharID();
-    }
+
+    
 }

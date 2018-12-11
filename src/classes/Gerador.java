@@ -1,44 +1,38 @@
 package classes;
 
-import jplay.Scene;
+
 import java.util.Random;
 
-//import jplay.URL;
-//import java.io.BufferedWriter;
-//import java.io.FileWriter;
-//import java.io.IOException;
-//import java.util.Scanner;
-
 public class Gerador {
-    
-    private static Random rand = new Random();
-    
- 
+
+    private static final Random rand = new Random();
+
     public static char getLetraRand() {
-	String ALFABETO="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    	return (ALFABETO.charAt(rand.nextInt(ALFABETO.length())));
+        String ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        return (ALFABETO.charAt(rand.nextInt(ALFABETO.length())));
     }
-    
+
     public static byte getPosAleatoria() {
-    	return (byte)(rand.nextInt(Ambiente.TAB_SIZE_MAX));
+        return (byte) (rand.nextInt(Ambiente.TAB_SIZE_MAX));
     }
-    public static byte getPosAleatoria(int inicio,int fim) {
-        byte i = (byte) (rand.nextInt(fim-inicio)+inicio);
+
+    public static byte getPosAleatoria(int inicio, int fim) {
+        byte i = (byte) (rand.nextInt(fim - inicio) + inicio);
         System.out.println(i);
-    	return (byte)(i);
+        return (byte) (i);
     }
 
     public static int getTileAtorIdRand() {
         int min = ID.ATOR0.getIntID();
         int max = ID.ATOR12.getIntID();
-               
-        return (rand.nextInt(max-min) + min);
+
+        return (rand.nextInt(max - min) + min);
     }
-    
+
     public static String getNomeArquivo(int idAtor) {
-        return "ator"+idAtor+".png";
+        return "ator" + idAtor + ".png";
     }
-    
+
     public static int getRandom(Ator a) {
         int aux[] = {1, 2, 3, 4, 6, 7, 8, 9};
         if (a.x == 0 && a.y == 0) {
@@ -75,5 +69,5 @@ public class Gerador {
             return aux[new Random().nextInt(aux.length)];
         }
     }
-   
+
 }

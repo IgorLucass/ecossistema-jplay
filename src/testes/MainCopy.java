@@ -5,27 +5,30 @@ import classes.Auxiliar;
 import jplay.*;
 import javax.swing.*;
 
-public class TesteMain {
+public class MainCopy {
 
-    private Scene cena;
-    private Window janela;
-    Ambiente amb;
+  
 
-    public TesteMain(Window window) {
-        // Solicitar o número de atores
+    public static void main(String[] args) {
         int numAtores = -1;
         while(numAtores<=0||numAtores>13)   // Lançar tratamento de erro para maior que 13
             numAtores = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de atores: "));
-        janela = window;
-        cena = new Scene();
+       
+        Window janela = new Window(720, 848);
+        Scene cena = new Scene();
         cena.loadFromFile(URL.scenario("cenario.scn"));
-        amb = new Ambiente(cena,numAtores);
+        Ambiente amb = new Ambiente(cena,numAtores);
         amb.alteraTile(cena);
-        run();
-    }
+        run(amb,cena,janela);
 
-    private void run() {
 
+    }    
+    
+
+    private static void run(Ambiente amb,Scene cena,Window janela) {
+
+        float velocidade = 0.4f;
+        
         while (true) {
 
             cena.draw();
@@ -50,17 +53,12 @@ public class TesteMain {
                 amb.alteraTile(cena);
                 cena.draw();
                 janela.update();
-                Auxiliar.pauseScript(0.01);
+                Auxiliar.pauseScript(velocidade);
             }
-
-//            System.out.println(amb.atorList.get(0).x + " " + amb.atorList.get(0).y);
         }
 
     }
 
-    public static void main(String[] args) {
-        Window janela = new Window(720, 848);
-        TesteMain teste = new TesteMain(janela);
-    }
+
 
 }
