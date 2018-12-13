@@ -1,19 +1,19 @@
-package game;
+package testes;
 
 import classes.Ambiente;
 import classes.Auxiliar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jplay.*;
 import javax.swing.*;
-public class Main {
-    
-   
+
+public class MainTest {
+
+  
 
     public static void main(String[] args) {
-      
-        
-           int numAtores = recebeAtores();
+        int numAtores = -1;
+        while(numAtores<=0||numAtores>13){   // Lançar tratamento de erro para maior que 13
+            numAtores = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de atores: "));
+        }
         Window janela = new Window(720, 848);
         Scene cena = new Scene();
         cena.loadFromFile(URL.scenario("cenario.scn"));
@@ -21,15 +21,17 @@ public class Main {
         amb.alteraTile(cena);
         run(amb,cena,janela);
 
-}
+
+    }    
     
 
     private static void run(Ambiente amb,Scene cena,Window janela) {
-        float velocidade = 0.4f;
+        float velocidade = 0.01f;
         
         while (true) {
 
             cena.draw();
+            //janela.update();
       
             if(amb.atorList.size()==1){
                 amb.FinalizarJogo();
@@ -55,33 +57,7 @@ public class Main {
         }
 
     }
-     public static int recebeAtores(){
-        int numAtores;
-        try{
-            numAtores = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero de atores"));
-            if(numAtores<=1 || numAtores>13)
-                throw new NumeroAtoresException("Numero precisa ser entre 2 e 13");
-        }
-        catch(NumeroAtoresException e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            numAtores=recebeAtores();
-        }
-        catch(RuntimeException e){
-            JOptionPane.showMessageDialog(null,"Formato esperado: int)");
-            numAtores=recebeAtores();
-        }
-        
-        return numAtores;
-        
-    }
-}
 
 
-class NumeroAtoresException extends Exception {
-    
-    public NumeroAtoresException(String msg){
-        super(msg);
-    }
 
 }
-

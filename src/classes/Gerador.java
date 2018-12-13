@@ -6,6 +6,8 @@ import java.util.Random;
 public class Gerador {
 
     private static final Random rand = new Random();
+    
+    
 
     public static char getLetraRand() {
         String ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

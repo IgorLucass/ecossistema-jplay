@@ -1,4 +1,4 @@
-20
+21
 src/recursos/tiles/solo.png
 src/recursos/tiles/maca.png
 src/recursos/tiles/carne.png
@@ -6,6 +6,7 @@ src/recursos/tiles/potion.png
 src/recursos/tiles/cogumelo.png
 src/recursos/tiles/fastfood.png
 src/recursos/tiles/tree.png
+src/recursos/tiles/cigarro.png
 src/recursos/sprites/ator0.png
 src/recursos/sprites/ator1.png
 src/recursos/sprites/ator2.png

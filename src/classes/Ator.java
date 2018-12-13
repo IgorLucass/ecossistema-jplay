@@ -13,6 +13,7 @@ public class Ator extends Sprite {
     protected Sistema sistema;
     public SistemaLocomotor locomover = new SistemaLocomotor();
     SistemaDigestivo sd = new SistemaDigestivo();
+    SistemaRespiratorio sr = new SistemaRespiratorio();
     Random rand = new Random();
         
    public Ator(Ambiente amb) {
@@ -53,6 +54,11 @@ public class Ator extends Sprite {
                 System.out.println("jogador " + amb.tab[x][(int) y] + " removido");
                 amb.removeAtor(amb.getAtorInPos((int) x, (int) y), cena);
             } 
+            else if(amb.tab[x][(int) y]==ID.CIGARRO.getCharID()){
+                this.sr.fumar(this);
+                System.out.println(this.nome + " fumou um cigarro! -40 energia");
+                System.out.println("Ator " + this.nome + " energia: " + this.energia + "%");
+            }
             else if(amb.tab[x][(int) y]!=ID.SOLO.getCharID()){
                 System.out.println(this.nome + " comeu! +50 energia");
                 this.sd.comer(this);
@@ -75,8 +81,14 @@ public class Ator extends Sprite {
             System.out.println("jogador " + amb.tab[x][(int) y] + " removido");
             amb.removeAtor(amb.getAtorInPos((int) x, y), cena);
 
-        } else if (amb.tab[x][y] != ID.SOLO.getCharID()) {
-            System.out.println(this.nome + " comeu maça! +50 energia");
+        } 
+        else if(amb.tab[x][(int) y]==ID.CIGARRO.getCharID()){
+                this.sr.fumar(this);
+                System.out.println(this.nome + " fumou um cigarro! -40 energia");
+                System.out.println("Ator " + this.nome + " energia: " + this.energia + "%");
+            }
+        else if (amb.tab[x][y] != ID.SOLO.getCharID()) {
+            System.out.println(this.nome + " comeu! +50 energia");
             this.sd.comer(this);
             System.out.println("Ator " + this.nome + " energia: " + this.energia + "%");
         }
@@ -94,8 +106,14 @@ public class Ator extends Sprite {
             System.out.println("jogador " + amb.tab[(int) x][y] + " removido");
             amb.removeAtor(amb.getAtorInPos((int) x, y), cena);
 
-        } else if (amb.tab[(int) x][y] != ID.SOLO.getCharID()) {
-            System.out.println(this.nome + " comeu maça! +50 energia");
+        } 
+        else if(amb.tab[(int)x][ y]==ID.CIGARRO.getCharID()){
+                this.sr.fumar(this);
+                System.out.println(this.nome + " fumou um cigarro! -40 energia");
+                System.out.println("Ator " + this.nome + " energia: " + this.energia + "%");
+            }
+        else if (amb.tab[(int) x][y] != ID.SOLO.getCharID()) {
+            System.out.println(this.nome + " comeu! +50 energia");
             this.sd.comer(this);
             System.out.println("Ator " + this.nome + " energia: " + this.energia + "%");
         }

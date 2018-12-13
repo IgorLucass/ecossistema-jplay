@@ -41,8 +41,9 @@ public class Ambiente {
         tileCharRef[4] = ID.COGUMELO.getCharID();
         tileCharRef[5] = ID.FASTFOOD.getCharID();
         tileCharRef[6] = ID.TREE.getCharID();
+        tileCharRef[7] = ID.CIGARRO.getCharID();
         
-        numTiles = 7;
+        numTiles = 8;
         
        // Insere os charIDs no ambiente 
     	for(i = 0; i < TAB_SIZE_MAX; i++) { 
@@ -108,6 +109,7 @@ public class Ambiente {
         else if(tileChar == ID.COGUMELO.getCharID()) tileID = ID.COGUMELO.getIntID();
         else if(tileChar == ID.FASTFOOD.getCharID()) tileID = ID.FASTFOOD.getIntID();
         else if(tileChar == ID.TREE.getCharID()) tileID = ID.TREE.getIntID();
+        else if(tileChar == ID.CIGARRO.getCharID()) tileID = ID.CIGARRO.getIntID();
         else tileID=getAtorInPos(posX,posY).getId();    
        
         cena.changeTile(posX, posY, tileID);
